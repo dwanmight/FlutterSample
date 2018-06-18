@@ -19,6 +19,7 @@ class _FirstPageState extends State<FirstPage> {
             child: FlatButton(
               child: Text("click to next page1"),
               onPressed: _clickNextPage,
+              color: Colors.red,
             )));
   }
 
