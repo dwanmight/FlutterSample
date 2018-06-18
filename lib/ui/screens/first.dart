@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello_flutter/application.dart';
-import 'package:hello_flutter/ui/screens/second.dart';
+import 'package:hello_flutter/ui/screens/list_groups.dart';
 
 class FirstPage extends StatefulWidget {
   @override
@@ -13,14 +13,17 @@ class _FirstPageState extends State<FirstPage> {
     return Scaffold(
         appBar: AppBar(
             title: Center(
-              child: Text("First Page"),
-            )),
+              child: Text("Demo"),
+            )
+        ),
         body: Center(
             child: FlatButton(
-              child: Text("click to next page1"),
+              child: Text("Start demo"),
               onPressed: _clickNextPage,
               color: Colors.red,
-            )));
+            )
+        )
+    );
   }
 
   _clickNextPage() {

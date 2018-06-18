@@ -11,7 +11,7 @@ class NetworkClient {
   var network = HttpClient();
 
 
-  Future<dynamic> load(Request r) async {
+  Future<dynamic> load(Request r,) async {
     var uri=_getUri(r.path(), r.params());
     var request = await network.getUrl(uri);
     var response = await request.close();
