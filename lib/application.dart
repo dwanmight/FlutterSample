@@ -25,5 +25,5 @@ class MyApp extends StatelessWidget {
 }
 
 startPage(BuildContext context, StatefulWidget page) {
-  Navigator.of(context).push(MaterialPageRoute(builder: (context) => page));
+  Navigator.of(context).push(MaterialPageRoute(builder: (c) => page));
 }

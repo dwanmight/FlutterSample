@@ -18,6 +18,23 @@ class SecondPage extends StatefulWidget {
 
 class SecondPageState extends State<SecondPage> {
   List<GroupItem> groups = List();
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.network.load(widget.api.getGroups())
+       .then((response) => response['groups'])
+       .then((list) {
+      for (var item in list) {
+        groups.add(GroupItem.fromJson(item));
+      }
+      isLoading = false;
+      setState(() {});
+    }).catchError((e) {
+      print(e);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,23 +42,8 @@ class SecondPageState extends State<SecondPage> {
       appBar: AppBar(
         title: Text("Groups"),
       ),
-      body: _buildListView(),
+      body: isLoading ? _buildHolder() : _buildListView(),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    widget.network.load(widget.api.getGroups())
-        .then((response) => response['groups'])
-        .then((list) {
-      for (var item in list) {
-        groups.add(GroupItem.fromJson(item));
-      }
-      setState(() {});
-    }).catchError((e) {
-      print(e);
-    });
   }
 
   _buildListView() {
@@ -74,6 +76,16 @@ class SecondPageState extends State<SecondPage> {
         );
       },
       itemCount: groups.length,
+    );
+  }
+
+  _buildHolder() {
+    return Center(
+      child: Text("Loading",
+        style: TextStyle(
+          fontSize: 22.0,
+        ),
+      ),
     );
   }
 
